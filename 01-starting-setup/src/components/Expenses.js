@@ -3,9 +3,18 @@ import "./Expenses.css";
 
 function IndividualExpenses(props) {
   const expenses = props.expenses;
+  const mappedExpenses = expenses.map((expense) => (
+    <ExpenseItems
+      date={expense.date}
+      title={expense.title}
+      amount={expense.amount}
+    />
+  ));
   return (
     <div className="expenses">
-      <ExpenseItems
+      {
+        mappedExpenses
+        /* <ExpenseItems
         title={expenses[0].title}
         amount={expenses[0].amount}
         date={expenses[0].date}
@@ -24,7 +33,8 @@ function IndividualExpenses(props) {
         title={expenses[3].title}
         amount={expenses[3].amount}
         date={expenses[3].date}
-      ></ExpenseItems>
+      ></ExpenseItems> */
+      }
     </div>
   );
 }
