@@ -1,5 +1,6 @@
 import ExpenseItems from "./ExpenseItems";
 import "./Expenses.css";
+import Card from "./Card";
 
 function IndividualExpenses(props) {
   const expenses = props.expenses;
@@ -11,7 +12,7 @@ function IndividualExpenses(props) {
     />
   ));
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {
         mappedExpenses
         /* <ExpenseItems
@@ -35,7 +36,7 @@ function IndividualExpenses(props) {
         date={expenses[3].date}
       ></ExpenseItems> */
       }
-    </div>
+    </Card>
   );
 }
 
