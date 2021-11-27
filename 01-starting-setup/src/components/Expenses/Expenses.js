@@ -8,6 +8,10 @@ import ExpensesFilter from "./ExpensesFilter";
 function IndividualExpenses(props) {
   const [filteredYear, setFilteredYear] = useState("2020");
   const expenses = props.expenses;
+  const filteredExpense = expenses.filter(
+    (expense) => expense.date.getFullYear().toString() === filteredYear
+  );
+  console.log(filteredExpense);
   // const mappedExpenses = expenses.map((expense) => (
   //   <ExpenseItems
   //     date={expense.date}
@@ -23,7 +27,7 @@ function IndividualExpenses(props) {
     <div>
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onYearChange={expenseYear} />
-        {expenses.map((expense) => (
+        {filteredExpense.map((expense) => (
           <ExpenseItems
             key={expense.id}
             title={expense.title}
@@ -44,7 +48,7 @@ function IndividualExpenses(props) {
         ></ExpenseItems>
         <ExpenseItems
           title={expenses[2].title}
-          amount={expenses[2].amount}
+          amount={expenses[2].amount} 
           date={expenses[2].date}
         ></ExpenseItems>
         <ExpenseItems
