@@ -1,5 +1,17 @@
+import React, { useState } from "react";
+
+import CourseInput from "./components/CourseGoal/CourseInput/CourseInput";
+
 function App() {
-  return <div></div>;
+  const [courseGoals, setCourseGoals] = useState([
+    { text: "Do all exercises!", id: "g1" },
+    { text: "Finish the course!", id: "g2" },
+  ]);
+  return (
+    <div>
+      <CourseInput />
+    </div>
+  );
 }
 
 export default App;

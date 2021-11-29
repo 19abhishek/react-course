@@ -1,12 +1,21 @@
 import React from "react";
 
-const CourseInput = () => {
+import "./CourseInput.css";
+import Button from "../../UI/Button.js";
+
+const CourseInput = (props) => {
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <div>
-      <form>
+    <form onSubmit={formSubmitHandler}>
+      <div className="form_input">
+        <div className="text">Course Goal</div>
         <input type="text" />
-      </form>
-    </div>
+      </div>
+      <Button type="submit" />
+    </form>
   );
 };
 
