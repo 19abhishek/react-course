@@ -10,6 +10,7 @@
 
 .button:active {
   outline: none;
+  transform: scale(1.02);
 }
 
 .button:active,

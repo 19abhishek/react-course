@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 import UserInput from "./Components/User/UserInput";
-import "./App.css";
+import UserItem from "./Components/User/UserItem";
 import Card from "./Components/Card/Card";
+import "./App.css";
 
 function App() {
+  const [users, setUser] = useState([
+    { name: "Abhishek", age: 23, id: Math.random().toString() },
+    { name: "Sneha", age: 25, id: Math.random().toString() },
+  ]);
+
+  let content = (
+    <Card>
+      <p>No User data available.</p>
+    </Card>
+  );
+
+  if (users.length > 0) {
+    content = users.map((user) => <UserItem name={user.name} age={user.age} />);
+  }
+
   return (
     <div className="main">
-      <Card>
-        <section className="input">
+      <section className="input">
+        <Card>
           <UserInput />
-        </section>
-      </Card>
+        </Card>
+      </section>
+      <section className="output">{content}</section>
     </div>
   );
 }
