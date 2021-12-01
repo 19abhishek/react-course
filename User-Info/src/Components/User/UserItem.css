@@ -1,0 +1,10 @@
+.user-data {
+  background-color: #66d9e8;
+  color: white;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.user-data p {
+  margin-left: 1rem;
+}
