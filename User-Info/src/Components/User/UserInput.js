@@ -25,17 +25,19 @@ const UserInput = (props) => {
     e.preventDefault();
     const newUser = { name: userName, age: userAge };
     props.onAddUser(newUser);
+    setUserName("");
+    setUserAge("");
   };
 
   return (
     <form onSubmit={formSubmitHandler}>
       <div>
         <label>Username</label>
-        <input type="text" onChange={onNameChangeHandler} />
+        <input type="text" value={userName} onChange={onNameChangeHandler} />
       </div>
       <div>
         <label>Age(Years)</label>
-        <input type="number" onChange={onAgeChangeHandler} />
+        <input type="number" value={userAge} onChange={onAgeChangeHandler} />
       </div>
       <Button>Add User</Button>
     </form>
