@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import UserInput from "./Components/User/UserInput";
-import UserItem from "./Components/User/UserItem";
 import UserList from "./Components/User/UserList";
 import Card from "./Components/Card/Card";
 import "./App.css";
@@ -13,21 +12,24 @@ function App() {
     { name: "Shubham", age: 25, id: Math.random().toString() },
   ]);
 
-  // let content = (
-  //   <Card>
-  //     <p>No User data available.</p>
-  //   </Card>
-  // );
-
-  // if (users.length > 0) {
-  //   content = users.map((user) => <UserItem name={user.name} age={user.age} />);
-  // }
+  const addUserHandler = (userInfo) => {
+    const newUser = {
+      name: userInfo.name,
+      age: userInfo.age,
+      id: Math.random().toString(),
+    };
+    setUser((prevUsers) => {
+      const nUser = [...prevUsers];
+      nUser.unshift(newUser);
+      return nUser;
+    });
+  };
 
   return (
     <div className="main">
       <div className="input">
         <Card>
-          <UserInput />
+          <UserInput onAddUser={addUserHandler} />
         </Card>
       </div>
       <div className="output">

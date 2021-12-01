@@ -6,7 +6,6 @@ import "./UserList.css";
 
 const UserList = (props) => {
   const users = props.items;
-  console.log(users);
 
   let content = <p>No User data available.</p>;
 
