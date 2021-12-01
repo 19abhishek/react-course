@@ -1,46 +1,80 @@
 import React, { useState } from "react";
 
 import Button from "../UI/Button.js";
+import ErrorModal from "../UI/ErrorModal.js";
+import Card from "../Card/Card.js";
 import "./UserInput.css";
 
 const UserInput = (props) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
+  const [error, setError] = useState();
 
   const onNameChangeHandler = (e) => {
-    if (userName.trim().length === 0) {
-      console.log("enter valid name");
-    }
     setUserName(e.target.value);
   };
 
   const onAgeChangeHandler = (e) => {
-    if (userAge < 0) {
-      console.log("Enter valid age");
-    }
     setUserAge(e.target.value);
   };
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
+    if (userName.trim().length === 0 || userAge.trim().length === 0) {
+      setError({
+        title: "An error occured",
+        message: "Please enter input of length > 0.",
+      });
+      return;
+    }
+    if (+userAge < 1) {
+      setError({
+        title: "An error occured",
+        message: "Age should be a positive integer.",
+      });
+      return;
+    }
     const newUser = { name: userName, age: userAge };
     props.onAddUser(newUser);
     setUserName("");
     setUserAge("");
   };
 
+  const submitHandler = () => {
+    setError();
+  };
+
   return (
-    <form onSubmit={formSubmitHandler}>
-      <div>
-        <label>Username</label>
-        <input type="text" value={userName} onChange={onNameChangeHandler} />
-      </div>
-      <div>
-        <label>Age(Years)</label>
-        <input type="number" value={userAge} onChange={onAgeChangeHandler} />
-      </div>
-      <Button>Add User</Button>
-    </form>
+    <div>
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={submitHandler}
+        />
+      )}
+      <form onSubmit={formSubmitHandler}>
+        <Card>
+          <div>
+            <label>Username</label>
+            <input
+              type="text"
+              value={userName}
+              onChange={onNameChangeHandler}
+            />
+          </div>
+          <div>
+            <label>Age(Years)</label>
+            <input
+              type="number"
+              value={userAge}
+              onChange={onAgeChangeHandler}
+            />
+          </div>
+          <Button type="submit">Add User</Button>
+        </Card>
+      </form>
+    </div>
   );
 };
 

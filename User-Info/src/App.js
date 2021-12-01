@@ -2,15 +2,17 @@ import React, { useState } from "react";
 
 import UserInput from "./Components/User/UserInput";
 import UserList from "./Components/User/UserList";
-import Card from "./Components/Card/Card";
+
 import "./App.css";
 
 function App() {
-  const [users, setUser] = useState([
-    { name: "Abhishek", age: 23, id: Math.random().toString() },
-    { name: "Sneha", age: 25, id: Math.random().toString() },
-    { name: "Shubham", age: 25, id: Math.random().toString() },
-  ]);
+  // const [users, setUser] = useState([
+  //   { name: "Abhishek", age: 23, id: Math.random().toString() },
+  //   { name: "Sneha", age: 25, id: Math.random().toString() },
+  //   { name: "Shubham", age: 25, id: Math.random().toString() },
+  // ]);
+
+  const [users, setUser] = useState([]);
 
   const addUserHandler = (userInfo) => {
     const newUser = {
@@ -28,9 +30,7 @@ function App() {
   return (
     <div className="main">
       <div className="input">
-        <Card>
-          <UserInput onAddUser={addUserHandler} />
-        </Card>
+        <UserInput onAddUser={addUserHandler} />
       </div>
       <div className="output">
         <UserList items={users} />
