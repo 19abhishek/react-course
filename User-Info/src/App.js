@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 
 import UserInput from "./Components/User/UserInput";
 import UserList from "./Components/User/UserList";
@@ -28,14 +28,16 @@ function App() {
   };
 
   return (
-    <div className="main">
-      <div className="input">
-        <UserInput onAddUser={addUserHandler} />
+    <Fragment>
+      <div className="main">
+        <div className="input">
+          <UserInput onAddUser={addUserHandler} />
+        </div>
+        <div className="output">
+          <UserList items={users} />
+        </div>
       </div>
-      <div className="output">
-        <UserList items={users} />
-      </div>
-    </div>
+    </Fragment>
   );
 }
 

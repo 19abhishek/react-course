@@ -16,9 +16,11 @@ const UserList = (props) => {
   }
 
   return (
-    <div className="user-list">
-      <Card>{content}</Card>
-    </div>
+    <>
+      <div className="user-list">
+        <Card>{content}</Card>
+      </div>
+    </>
   );
 };
 
