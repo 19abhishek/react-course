@@ -12,7 +12,7 @@ const useInput = (validation) => {
   };
 
   const valueInputBlurHandler = (event) => {
-    setEnteredValue(true);
+    setEnteredValueTouched(true);
   };
 
   const reset = () => {
