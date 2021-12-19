@@ -32,6 +32,8 @@ import { useEffect, useState } from "react";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [hasError, setError] = useState();
   // useEffect(() => {
   // const fetchMeals = async () => {
 
@@ -49,6 +51,9 @@ const AvailableMeals = () => {
       const response = await fetch(
         "https://food-http-c7a09-default-rtdb.firebaseio.com/meals.json"
       );
+      if (!response.ok) {
+        throw new Error("Something went Wrong");
+      }
       const responseData = await response.json();
       const mealData = [];
       for (const key in responseData) {
@@ -60,9 +65,21 @@ const AvailableMeals = () => {
         });
       }
       setMeals(mealData);
+      setLoading(false);
     };
-    fetchMeals();
+    //try-catch is not used here because fetch meals is an asynch function. You can make another async function and use try-catch in it
+    fetchMeals().catch((error) => {
+      setLoading(false);
+      setError(error.message);
+    });
   }, []);
+
+  if (isLoading) {
+    return <section className={classes.loading}>Loading...</section>;
+  }
+  if (hasError) {
+    return <section className={classes.error}>Something went wrong.</section>;
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
