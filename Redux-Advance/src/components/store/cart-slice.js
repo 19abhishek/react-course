@@ -8,7 +8,7 @@ const cartSlice = createSlice({
   reducers: {
     increment(state, action) {
       state.price = action.payload;
-      state.counter++;
+      state.quantity++;
     },
     decrement(state) {
       if (state.counter > 0) state.counter--;
