@@ -6,6 +6,7 @@ const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -18,7 +19,8 @@ const AuthForm = () => {
     const enteredPassword = passwordInputRef.current.value;
     console.log(enteredPassword);
 
-    if (!isLogin) {
+    setLoading(true);
+    if (isLogin) {
     } else {
       const send = async () => {
         // console.log("hello");
@@ -36,11 +38,17 @@ const AuthForm = () => {
             },
           }
         );
+        setLoading(false);
         if (!response.ok) {
           //
         }
         const data = await response.json();
+        let errorMessage = "Authentication Failed!!";
+        if (data && data.error && data.error.message) {
+          errorMessage = data.error.message;
+        }
         console.log(data);
+        alert(errorMessage);
       };
       send();
     }
@@ -64,7 +72,10 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          <button>{isLogin ? "Login" : "Create Account"}</button>
+          {!isLoading && (
+            <button>{isLogin ? "Login" : "Create Account"}</button>
+          )}
+          {isLoading && <p style={{ color: "white" }}>Sending Request...</p>}
           <button
             type="button"
             className={classes.toggle}
