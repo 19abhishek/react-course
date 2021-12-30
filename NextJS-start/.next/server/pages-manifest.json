@@ -2,9 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/Home-Page": "pages/Home-Page.js",
   "/": "pages/index.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/news": "pages/news.js",
-  "/news/news-details": "pages/news/news-details.js"
+  "/news/[newsId]": "pages/news/[newsId].js"
 }
